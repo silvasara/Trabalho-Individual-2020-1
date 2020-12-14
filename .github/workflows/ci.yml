@@ -19,7 +19,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build API
-      run: docker-compose build api
+      run: docker-compose up -d api
 
     - name: Run API Tests
       run: docker exec api rake test
@@ -32,6 +32,6 @@ jobs:
         with:
           node-version: '14.15.1'
       - name: Build Client
-        run: docker-compose build client
+        run: docker-compose up -d client
       - name: Run Client Tests
         run: docker-compose run client yarn run test:unit
