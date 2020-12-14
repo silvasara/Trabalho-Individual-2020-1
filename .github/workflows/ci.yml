@@ -18,8 +18,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: version docker
+      run: docker-compose --version
+
     - name: Build API
       run: docker-compose up -d api
+    
+    - name: containers
+      run: docker ps -a
 
     - name: Run API Tests
       run: docker exec api rake test
@@ -31,7 +37,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.15.1'
+
       - name: Build Client
         run: docker-compose up -d client
+
       - name: Run Client Tests
         run: docker-compose run client yarn run test:unit
