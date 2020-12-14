@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  api:
+    build: ./api
+    volumes:
+      - ./api:/api
+    ports:
+      - 3000:3000
+    links:
+      - db
+    container_name: api
+    restart: on-failure
+
+  client:
+    build: ./client
+    volumes:
+      - ./client:/client
+    ports:
+      - 8080:8080
+    container_name: client
+    restart: on-failure
+  
+  db:
+    image: postgres
+    env_file: ./api/db.env
+    container_name: database
