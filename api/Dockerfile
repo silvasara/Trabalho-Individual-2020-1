@@ -8,7 +8,6 @@ RUN mkdir /api
 WORKDIR /api
 
 ADD Gemfile /api
-ADD Gemfile.lock /api
 
 RUN gem install bundler:2.1.4
 RUN bundle install
