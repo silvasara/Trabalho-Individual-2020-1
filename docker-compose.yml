@@ -15,7 +15,8 @@ services:
   client:
     build: ./client
     volumes:
-      - ./client:/client
+      - ./client/src:/client/src
+      - ./client/tests:/client/tests
     ports:
       - 8080:8080
     container_name: client
